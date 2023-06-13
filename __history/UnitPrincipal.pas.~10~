@@ -1,0 +1,80 @@
+unit UnitPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    txtNumero1: TEdit;
+    txtNumero2: TEdit;
+    Label2: TLabel;
+    txtResultado: TEdit;
+    LblNumero1: TLabel;
+    LblNumero2: TLabel;
+    BtSomar: TButton;
+    BtSubtrair: TButton;
+    BtMultiplicar: TButton;
+    BtDividir: TButton;
+    procedure BtSomarClick(Sender: TObject);
+    procedure BtSubtrairClick(Sender: TObject);
+    procedure BtMultiplicarClick(Sender: TObject);
+    procedure BtDividirClick(Sender: TObject);
+  public
+    function Somar(const ANumero1, ANumero2 : Real) : Real;
+    function Subtrair(const ANumero1, ANumero2 : Integer) : Integer;
+    function Multiplicar(const ANumero1, ANumero2 : Integer) : Integer;
+    function Dividir(const ANumero1, ANumero2 : Real) : Real;
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.BtDividirClick(Sender: TObject);
+begin
+  StrToFloat(txtResultado.Text) := Self.Dividir(StrToFloat(txtNumero1.Text), StrToFloat(txtNumero2.Text)).ToString;
+end;
+
+procedure TForm1.BtMultiplicarClick(Sender: TObject);
+begin
+  txtResultado.Text := Self.Multiplicar(StrToInt(txtNumero1.Text), StrToInt(txtNumero2.Text)).ToString;
+end;
+
+procedure TForm1.BtSomarClick(Sender: TObject);
+begin
+  //txtResultado.Text := Self.Somar(StrToInt(txtNumero1.Text), StrToInt(txtNumero2.Text)).ToString;
+end;
+
+
+procedure TForm1.BtSubtrairClick(Sender: TObject);
+begin
+  txtResultado.Text := Self.Subtrair(StrToInt(txtNumero1.Text), StrToInt(txtNumero2.Text)).ToString;
+end;
+
+function TForm1.Dividir(const ANumero1, ANumero2: Real): Real;
+begin
+  Result := ANumero1 div ANumero2;
+end;
+
+function TForm1.Multiplicar(const ANumero1, ANumero2: Integer): Integer;
+begin
+  Result := ANumero1 * ANumero2;
+end;
+
+function TForm1.Somar(const ANumero1, ANumero2: Integer): Integer;
+begin
+  Result := ANumero1 + ANumero2;
+end;
+
+function TForm1.Subtrair(const ANumero1, ANumero2: Integer): Integer;
+begin
+  Result := ANumero1 - ANumero2;
+end;
+
+end.
